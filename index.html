@@ -11,14 +11,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@400;500;700&family=Hahmlet:wght@400;600;700&display=swap" rel="stylesheet">
 <style>
 :root{
-  --board:#ffe6e6;      /* 분홍 색지 */
+  --board:#fff1f1;      /* 분홍 색지 */
   --board-deep:#ffd6d9;
   --chalk:#4a1a2a;      /* 색지 위 글씨: 짙은 자주 */
   --chalk-dim:rgba(74,26,42,.72);
   --chalk-line:rgba(74,26,42,.24);
   --marker:#ffb9c6;     /* 분홍 형광펜 */
   --accent:#b3264a;     /* 눌러지는 글자 */
-  --paper:#fffafa;      /* 학습지 */
+  --paper:#ffffff;      /* 학습지 */
   --ink:#2a1820;        /* 먹 */
   --ink-soft:#7a5f68;
   --rule:#ecd6da;
@@ -39,10 +39,11 @@ a{color:inherit}
 /* ───────── 첫 화면: 분홍 색지 ───────── */
 .board{background:var(--board);color:var(--chalk);min-height:100vh;padding:clamp(28px,5vw,64px) clamp(18px,4.5vw,64px) 56px}
 .board-inner{max-width:1240px;margin:0 auto}
-.masthead{display:block;background:#fadadd;box-shadow:0 0 0 100vmax #fadadd;clip-path:inset(-100vmax -100vmax 0 -100vmax);padding-bottom:clamp(20px,3vw,36px)}
+.masthead{display:block;background:#ffe6e8;box-shadow:0 0 0 100vmax #ffe6e8;clip-path:inset(-100vmax -100vmax 0 -100vmax);padding-bottom:clamp(20px,3vw,36px)}
 .masthead .over{font-size:clamp(15px,1.5vw,18px);font-weight:500;color:var(--chalk-dim);margin:0 0 10px}
 .masthead h1{font-family:var(--display);font-weight:700;font-size:clamp(44px,8.2vw,112px);line-height:1.02;letter-spacing:-.035em;margin:0}
-.masthead .lede{margin:20px 0 0;font-size:clamp(15px,1.35vw,17.5px);color:var(--chalk-dim);max-width:34em}
+.masthead .lede{margin:20px 0 0;font-size:clamp(15px,1.35vw,17.5px);color:var(--chalk-dim);max-width:40em}
+.masthead .lede span{display:block}
 .search{display:block}
 .search span{display:block;font-size:13.5px;color:var(--chalk-dim);margin-bottom:6px}
 .search input{width:100%;background:transparent;border:0;border-bottom:2px solid #966875;padding:8px 2px 9px;color:var(--chalk);font-size:17px;border-radius:0}
@@ -131,6 +132,8 @@ a{color:inherit}
 .case-nav a,.case-nav button{background:transparent;border:0;color:var(--chalk);text-decoration:none;padding:6px 2px;cursor:pointer;border-bottom:1.5px solid var(--chalk-line)}
 .case-nav a:hover,.case-nav button:hover{border-bottom-color:var(--accent);color:var(--accent)}
 .case-nav .pn{display:flex;gap:18px}
+.case-nav a{display:inline-flex;align-items:center;gap:.4em}
+.ico{width:1.1em;height:1.1em;flex:none;fill:none;stroke:currentColor;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .case-kicker{margin:clamp(26px,4vw,46px) 0 8px;font-size:16px;color:var(--chalk-dim);font-weight:500}
 .case-top h1{font-family:var(--display);font-weight:700;font-size:clamp(28px,4.4vw,52px);line-height:1.2;letter-spacing:-.025em;margin:0;max-width:22em}
 .facts{margin:clamp(22px,3vw,34px) 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));border-top:1px solid var(--chalk-line)}
@@ -147,7 +150,7 @@ a{color:inherit}
 .ops em{font-style:normal;color:var(--chalk-dim);margin-right:8px}
 
 .paper{background:var(--paper);min-height:60vh}
-.jump{position:sticky;top:0;z-index:5;background:rgba(255,250,250,.96);border-bottom:1px solid var(--rule);padding:0 clamp(18px,4.5vw,64px)}
+.jump{position:sticky;top:0;z-index:5;background:rgba(255,255,255,.96);border-bottom:1px solid var(--rule);padding:0 clamp(18px,4.5vw,64px)}
 .jump div{max-width:1080px;margin:0 auto;display:flex;gap:4px 20px;overflow-x:auto;white-space:nowrap;scrollbar-width:none}
 .jump a{font-size:14.5px;color:var(--ink-soft);text-decoration:none;padding:11px 0 10px;border-bottom:2px solid transparent}
 .jump a:hover{color:var(--ink);border-bottom-color:var(--ink)}
@@ -181,7 +184,9 @@ a{color:inherit}
 .imgfail{display:flex;align-items:center;justify-content:center;min-height:120px;padding:14px;font-size:13.5px;color:var(--ink-soft);text-align:center}
 .case-end{display:flex;justify-content:space-between;gap:16px;margin-top:34px;flex-wrap:wrap}
 .case-end a{color:var(--ink);text-decoration:none;border-bottom:1.5px solid var(--ink);padding-bottom:2px;font-weight:700;max-width:46%}
-.case-end a small{display:block;font-weight:400;color:var(--ink-soft);font-size:13.5px}
+.case-end a small{display:flex;align-items:center;gap:.4em;font-weight:400;color:var(--ink-soft);font-size:13.5px}
+.case-end a.next{text-align:right}
+.case-end a.next small{justify-content:flex-end}
 .case-end a:hover{color:var(--pen);border-bottom-color:var(--pen)}
 
 @media (max-width:760px){
@@ -253,8 +258,8 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
   <header class="case-top">
     <div class="case-top-inner">
       <nav class="case-nav" aria-label="사례 이동">
-        <a href="#" id="back">사례 목록으로</a>
-        <span class="pn"><a id="prev" href="#">이전 사례</a><a id="next" href="#">다음 사례</a></span>
+        <a href="#" id="back"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"/></svg>사례 목록으로</a>
+        <span class="pn"><a id="prev" href="#"><svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>이전 사례</a><a id="next" href="#">다음 사례<svg class="ico" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></span>
       </nav>
       <p class="case-kicker" id="c-kicker"></p>
       <h1 id="c-title"></h1>
@@ -285,7 +290,11 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
 (function(){
   var DATA = window.CASEBOOK;
   var CASES = DATA.cases;
-  var SUBJECTS = ['국어','도덕','사회','수학','과학','기술','가정','정보','체육','음악','미술','영어','진로'];
+  var SUBJECTS = ['수학','음악','기술','가정','국어','과학','체육','도덕','영어','정보','미술','사회','진로'];
+  // [배포본 2] 사례 순서도 학년 → 위 과목 순서로 맞춘다 (결과 목록, 이전·다음 사례)
+  CASES.sort(function(a, b){
+    return (a.grade - b.grade) || (SUBJECTS.indexOf(a.subject) - SUBJECTS.indexOf(b.subject)) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
+  });
   var state = { tool: null, q: '', subject: '', grade: '' };
   var byId = {};
   CASES.forEach(function(c){ byId[c.id] = c; });
@@ -308,9 +317,11 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
     $('over').textContent = DATA.year + ' ' + DATA.school + ' ' + DATA.program;
     var subjN = {};
     CASES.forEach(function(c){ subjN[c.subject] = 1; });
-    $('lede').textContent = '교과 ' + Object.keys(subjN).length + '개, 수업 ' + CASES.length +
-      '편을 모았습니다. 교과와 학년이 만나는 칸에서 수업을 고르면 사례가 열립니다.';
-    $('colophon').textContent = DATA.year + ' ' + DATA.school + ' ' + DATA.program + ' 운영 결과를 선생님들이 직접 정리했습니다.';
+    var lede = $('lede');
+    lede.textContent = '';
+    lede.appendChild(el('span', null, '교과 ' + Object.keys(subjN).length + '개, 수업 ' + CASES.length + '편을 모았습니다.'));
+    lede.appendChild(el('span', null, '교과와 학년이 만나는 칸에서 수업을 고르면 사례가 열립니다.'));
+    $('colophon').textContent = DATA.year + ' ' + DATA.school + ' ' + DATA.program + ' 수업사례집';
     // 도구 칩
     var count = {};
     CASES.forEach(function(c){ c.tools.forEach(function(t){ count[t] = (count[t] || 0) + 1; }); });
@@ -342,6 +353,13 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
         more.textContent = open ? '도구 접기' : '도구 더 보기';
       });
       chips.appendChild(more);
+      // [배포본 3] 화면 폭이 821px 이상(PC)이면 처음부터 펼쳐 두고, 그보다 좁으면(폰) 접어 둔다.
+      // 처음 열 때 한 번만 정한다. 그 뒤에는 누른 대로 따른다.
+      if (window.matchMedia && window.matchMedia('(min-width:821px)').matches) {
+        chips.classList.add('open');
+        more.setAttribute('aria-expanded', 'true');
+        more.textContent = '도구 접기';
+      }
     }
 
     // 시간표
@@ -632,10 +650,13 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
     $('next').href = caseHash(n);
     var end = el('nav', 'case-end');
     end.setAttribute('aria-label', '이전·다음 사례');
-    [[p, '이전 사례'], [n, '다음 사례']].forEach(function(x){
-      var a = el('a');
+    [[p, '이전 사례', 'prev'], [n, '다음 사례', 'next']].forEach(function(x){
+      var a = el('a', x[2]);
       a.href = caseHash(x[0]);
-      a.appendChild(el('small', null, x[1] + ', ' + x[0].grade + '학년 ' + x[0].subject));
+      var sm = el('small', null, x[1] + ', ' + x[0].grade + '학년 ' + x[0].subject);
+      var ic = $(x[2]).querySelector('svg').cloneNode(true);   // 위쪽 단추와 같은 화살표
+      if (x[2] === 'prev') sm.insertBefore(ic, sm.firstChild); else sm.appendChild(ic);
+      a.appendChild(sm);
       a.appendChild(document.createTextNode(x[0].title));
       end.appendChild(a);
     });
@@ -651,12 +672,35 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
     $('z-cap').textContent = s.caption;
     $('z-count').textContent = (zi + 1) + ' / ' + shots.length;
   }
-  function openZoom(i){
+  // [배포본 2] 크게 보기를 열 때 방문 기록을 한 칸 쌓아 둔다. 뒤로가기는 그 칸만 되돌리므로
+  // 사례 화면과 읽던 위치는 그대로 남고 사진만 닫힌다.
+  // [배포본 4] 그 칸에 사례와 사진 번호를 적어 둔다. 앞으로가기나 새로 고침으로 그 칸에 다시 들어오면
+  // 같은 사진을 다시 열어, 뒤로가기 한 번이 언제나 '사진 닫기' 한 번이 되게 한다.
+  var zoomInHistory = false;
+  var curCaseId = null;
+  function zoomState(){ return { zoom: 1, id: curCaseId, i: zi }; }
+  function openZoom(i, fromHistory){
     zi = i; renderZoom();
     var d = $('zoom');
-    if (d.showModal) d.showModal(); else d.setAttribute('open', '');
+    var wasOpen = d.open;
+    if (!wasOpen) { if (d.showModal) d.showModal(); else d.setAttribute('open', ''); }
+    if (fromHistory) { zoomInHistory = true; return; }
+    if (wasOpen) return;
+    if (window.history && history.pushState) { history.pushState(zoomState(), ''); zoomInHistory = true; }
   }
-  function stepZoom(k){ zi = (zi + k + shots.length) % shots.length; renderZoom(); }
+  function stepZoom(k){
+    zi = (zi + k + shots.length) % shots.length; renderZoom();
+    if (zoomInHistory && history.replaceState) history.replaceState(zoomState(), '');
+  }
+  // 지금 방문 기록 칸이 '이 사례의 확대 기록'이면 그 사진을 다시 연다
+  function restoreZoom(){
+    var st = window.history && history.state;
+    if (!st || !st.zoom || curCaseId === null || st.id !== curCaseId || $('view-case').hidden || !shots.length) return false;
+    var i = Number(st.i);
+    if (!(i >= 0 && i < shots.length)) i = 0;
+    openZoom(i, true);
+    return true;
+  }
   function bindZoom(){
     var d = $('zoom');
     $('z-close').addEventListener('click', function(){ d.close(); });
@@ -666,6 +710,16 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
     d.addEventListener('keydown', function(e){
       if (e.key === 'ArrowLeft') stepZoom(-1);
       if (e.key === 'ArrowRight') stepZoom(1);
+    });
+    // 닫기 단추, 바깥 누르기, Esc로 닫았으면 쌓아 둔 기록 한 칸을 되돌린다
+    d.addEventListener('close', function(){
+      if (zoomInHistory) { zoomInHistory = false; history.back(); }
+    });
+    // 뒤로가기를 눌렀으면 사진만 닫는다
+    window.addEventListener('popstate', function(e){
+      // 앞으로가기로 확대 기록에 들어온 경우: 같은 사례면 여기서 다시 열고, 사례가 바뀌는 중이면 route()가 연다
+      if (e.state && e.state.zoom) { restoreZoom(); return; }
+      if (zoomInHistory || d.open) { zoomInHistory = false; if (d.open) d.close(); }
     });
   }
 
@@ -677,14 +731,17 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
     var c = null;
     if (m) { try { c = byId[decodeURIComponent(m[1])]; } catch (e) { c = null; } }
     var zoom = $('zoom');
-    if (zoom.open) zoom.close();
+    if (zoom.open) { zoomInHistory = false; zoom.close(); }
     if (c) {
       if (!$('view-index').hidden) indexScroll = window.scrollY;
       $('view-index').hidden = true;
       $('view-case').hidden = false;
+      curCaseId = c.id;
       showCase(c);
-      window.scrollTo(0, 0);
+      // 새로 고침·앞으로가기로 확대 기록에 들어온 경우에는 읽던 위치를 건드리지 않고 사진을 다시 연다
+      if (!restoreZoom()) window.scrollTo(0, 0);
     } else {
+      curCaseId = null;
       $('view-case').hidden = true;
       $('view-index').hidden = false;
       document.title = DATA.year + ' ' + DATA.school + ' ' + DATA.program + ' 수업 사례집';
