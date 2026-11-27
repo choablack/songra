@@ -290,7 +290,7 @@ dialog.zoom::backdrop{background:rgba(32,13,20,.94)}
 (function(){
   var DATA = window.CASEBOOK;
   var CASES = DATA.cases;
-  var SUBJECTS = ['수학','음악','기술','가정','국어','과학','체육','도덕','영어','정보','미술','사회','진로'];
+  var SUBJECTS = ['수학','음악','기술','가정','국어','과학','체육','도덕','영어','정보','미술','역사','사회','진로'];
   // [배포본 2] 사례 순서도 학년 → 위 과목 순서로 맞춘다 (결과 목록, 이전·다음 사례)
   CASES.sort(function(a, b){
     return (a.grade - b.grade) || (SUBJECTS.indexOf(a.subject) - SUBJECTS.indexOf(b.subject)) || (a.id < b.id ? -1 : a.id > b.id ? 1 : 0);
